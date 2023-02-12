@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "351769256856",
+    "firebase_url": "https://prodajaodjece-2102b-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "prodajaodjece-2102b",
+    "storage_bucket": "prodajaodjece-2102b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351769256856:android:c83dfdeda15395e9ef81ed",
+        "android_client_info": {
+          "package_name": "com.example.prodajaodjece"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351769256856-hlifpk3084fop862fnlaudbac6lim4lq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAstB7zDd-39h28ZUGprOpc9AmLbUdPUk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351769256856-hlifpk3084fop862fnlaudbac6lim4lq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "351769256856-b38ogmh5jklia0eaoqc47vg7s689gbjp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
