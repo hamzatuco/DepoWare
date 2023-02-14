@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, library_private_types_in_public_api, prefer_const_constructors
+
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:async';
 
@@ -9,7 +11,7 @@ import 'package:prodajaodjece/Pages/HomePage.dart';
 
 
 class Splash extends StatefulWidget {
-  Splash({Key? key}) : super(key: key);
+  const Splash({Key? key}) : super(key: key);
 
 
 
@@ -19,18 +21,11 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash>
     with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _animation;
 
 
   @override
   void initState() {
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
 
-    _animation = new Tween<double>(begin: 0, end: 1).animate(
-        new CurvedAnimation(
-            parent: _animationController, curve: Curves.easeInOutCirc));
 
     super.initState();
 
@@ -57,10 +52,10 @@ class _SplashState extends State<Splash>
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
 
-              Container(
+              SizedBox(
                 height: 300,
                   width:300 ,
-                  child: Lottie.asset('checkmark.json',
+                  child: Lottie.network('https://assets10.lottiefiles.com/packages/lf20_kdjli5ii.json',
                   repeat: false)
               ),
           Text('USPJEŠAN UNOS',

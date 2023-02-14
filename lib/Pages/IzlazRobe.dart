@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -12,16 +14,21 @@ class IzlazRobe extends StatefulWidget {
   State<IzlazRobe> createState() => _IzlazRobeState();
 }
 
+
 class _IzlazRobeState extends State<IzlazRobe> {
   final kupacController = TextEditingController();
   final cijenaprodajnaController = TextEditingController();
   final artikalController = TextEditingController();
   final markaController = TextEditingController();
+@override
+ void initState() {
+    super.initState();
+  Firebase.initializeApp();
+  }
 
 
-
-  List<String> docIDs = [];
-
+List<String> docIDs = [];
+String dropdownValue = "";
 
 
   @override
@@ -80,24 +87,58 @@ class _IzlazRobeState extends State<IzlazRobe> {
 
             Align(
               alignment: Alignment.topLeft,
-              child: Padding(
+             child: Padding(
                 padding: const EdgeInsets.only(left: 25, right: 25, bottom: 10),
-                child: DropdownButtonFormField(
 
-                    //controller: artikalController,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
+    
+
+          child: StreamBuilder<QuerySnapshot>(
+    stream: FirebaseFirestore.instance.collection('ulaz').snapshots(),
+    builder: (context, snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+      return const Center(child: CircularProgressIndicator());
+    }
+        if (!snapshot.hasData) {
+            return DropdownButtonFormField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
-                      ),
-                      prefixIcon: const Icon(Icons.shopping_cart,
-                          color: Colors.lightGreen),
                     ),
-                    iconDisabledColor: Colors.lightGreen,
-                    dropdownColor: Colors.lightGreen,
-                    items: const [
-                      DropdownMenuItem(child: Text("holder"), value: "holder"),
-                    ],
-                    onChanged: null),
+                    prefixIcon: const Icon(Icons.shopping_cart,
+                        color: Colors.lightGreen),
+                ),
+                iconDisabledColor: Colors.lightGreen,
+                dropdownColor: Colors.lightGreen,
+                items: const [],
+                onChanged: null,
+            );
+        }
+        return DropdownButtonFormField(
+            decoration: InputDecoration(
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                ),
+                prefixIcon: const Icon(Icons.shopping_cart,
+                    color: Colors.lightGreen),
+            ),
+            value: dropdownValue,
+            iconDisabledColor: Colors.lightGreen,
+            dropdownColor: Colors.lightGreen,
+            items: snapshot.data!.docs.map((doc) {
+                return DropdownMenuItem(
+                    value: doc['artikal'],
+                    child: Text(doc['artikal']),
+                );
+            }).toList(),
+            onChanged: (value) {
+                setState(() {
+                    dropdownValue = value.toString();
+                    artikalController.text = value.toString();
+                });
+            },
+        );
+    },
+),
               ),
             ),
             Padding(

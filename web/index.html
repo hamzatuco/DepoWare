@@ -40,6 +40,26 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDT55eB-EcWSe27A3rPMUJYbVs_fy-80CI",
+      authDomain: "prodajaodjece-2102b.firebaseapp.com",
+      databaseURL: "https://prodajaodjece-2102b-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "prodajaodjece-2102b",
+      storageBucket: "prodajaodjece-2102b.appspot.com",
+      messagingSenderId: "351769256856",
+      appId: "1:351769256856:web:402f0e303983d128ef81ed"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+  </script>
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
@@ -54,5 +74,6 @@
       });
     });
   </script>
+  
 </body>
 </html>

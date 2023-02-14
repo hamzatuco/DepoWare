@@ -1,5 +1,7 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:prodajaodjece/Pages/SplashAdd.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'UlazRobe.dart';
 import 'IzlazRobe.dart';
 import 'Transakcije.dart';
@@ -11,7 +13,7 @@ Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(HomePage());
+  runApp(const HomePage());
 }
 
 
@@ -26,11 +28,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-
-      ),
-      body: Center(
-
+      
+      body: Center (
+ child: SingleChildScrollView(
 
 
         child: Column(
@@ -39,37 +39,38 @@ class _HomePageState extends State<HomePage> {
 
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 20, 25, 0),
-                child: Container(
+                child: SizedBox(
                     height: 250,
-                    width:300 ,
-                    child: Lottie.asset('odjeca.json')),
+                    width:250 ,
+                    child: Lottie.network('https://assets7.lottiefiles.com/packages/lf20_5ngs2ksb.json')),
               ),
 
 
-              Padding(
-                padding: const EdgeInsets.fromLTRB(25, 0, 25,0 ),
-                child: const Text(
-                    'Zdravo, izaberite neku \nod operacija',
+              FittedBox(
+                 fit: BoxFit.scaleDown,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(25, 15, 25,0 ),
+                  child: Text('Zdravo, izaberite neku\nod opcija',
                   textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 31
-                  ),
+                    overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.roboto(
+                          fontSize: 29, fontWeight: FontWeight.bold)),
                 ),
               ),
 
 
 
-            SizedBox(
+             const SizedBox(
               height: 50,
             ),
 
             SizedBox(
-              height:51, //height of button
+              height: 50, //height of button
               width:200, //width of button
               child: ElevatedButton(
 
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.lightBlue,
+                  backgroundColor: Colors.deepOrangeAccent,
 
                   textStyle: const TextStyle(
                       color: Colors.white,
@@ -77,13 +78,17 @@ class _HomePageState extends State<HomePage> {
                       fontStyle: FontStyle.normal),
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  UlazRobe())) ;
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  const UlazRobe())) ;
                 },
 
-                child: const Text('Ulaz robe'),
+                child: Text('Ulaz robe',
+                textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.roboto(
+                        fontSize: 17, fontWeight: FontWeight.bold)),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             SizedBox(
@@ -91,9 +96,8 @@ class _HomePageState extends State<HomePage> {
               width:200, //width of button
               child: ElevatedButton(
 
-                child: Text('Izlaz robe'),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.lightBlue,
+                  backgroundColor: Colors.deepOrangeAccent,
 
                   textStyle: const TextStyle(
                       color: Colors.white,
@@ -103,6 +107,12 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const IzlazRobe())) ;
                 },
+
+                child: Text('Izlaz robe',
+                textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.roboto(
+                        fontSize: 17, fontWeight: FontWeight.bold)),
               ),
             ),
             const SizedBox(
@@ -113,9 +123,8 @@ class _HomePageState extends State<HomePage> {
               width:200, //width of button
               child: ElevatedButton(
 
-                child: Text('Transakcije'),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.lightBlue,
+                   backgroundColor: Colors.deepOrangeAccent,
 
                   textStyle: const TextStyle(
                       color: Colors.white,
@@ -125,6 +134,12 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const Transakcije())) ;
                 },
+
+                child: Text('Transakcije',
+                textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.roboto(
+                        fontSize: 17, fontWeight: FontWeight.bold)),
               ),
             ),
 
@@ -134,32 +149,11 @@ class _HomePageState extends State<HomePage> {
 
 
 
-            SizedBox(
-              height:51, //height of button
-              width:200, //width of button
-              child: ElevatedButton(
-
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.lightBlue,
-
-                  textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontStyle: FontStyle.normal),
-                ),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  Splash())) ;
-                },
-
-                child: const Text('Ulaz robe'),
-              ),
-            ),
-
 
 
           ],
         ),
-      ),
+      ),),
     );
   }
 }

@@ -58,7 +58,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCAstB7zDd-39h28ZUGprOpc9AmLbUdPUk',
-    appId: '1:351769256856:android:c83dfdeda15395e9ef81ed',
+    appId: '1:351769256856:android:ec5724e6d15f0bd1ef81ed',
     messagingSenderId: '351769256856',
     projectId: 'prodajaodjece-2102b',
     databaseURL: 'https://prodajaodjece-2102b-default-rtdb.europe-west1.firebasedatabase.app',
