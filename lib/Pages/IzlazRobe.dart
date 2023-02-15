@@ -1,3 +1,4 @@
+//unos kod artikla, search, precica, tolowercase
 // ignore_for_file: file_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,7 +24,9 @@ class _IzlazRobeState extends State<IzlazRobe> {
 @override
  void initState() {
     super.initState();
-  Firebase.initializeApp();
+  Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+      );
   }
 
 
@@ -92,7 +95,7 @@ String dropdownValue = "";
 
     
 
-          child: StreamBuilder<QuerySnapshot>(
+      /*    child: StreamBuilder<QuerySnapshot>(
     stream: FirebaseFirestore.instance.collection('ulaz').snapshots(),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.waiting) {
@@ -138,14 +141,14 @@ String dropdownValue = "";
             },
         );
     },
-),
+),*/
               ),
             ),
             Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 7.0, horizontal: 25.0),
               child: TextField(
-                enabled: false,
+                
                 controller: markaController,
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
