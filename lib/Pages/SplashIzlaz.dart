@@ -10,16 +10,16 @@ import 'package:prodajaodjece/Pages/HomePage.dart';
 
 
 
-class Splash extends StatefulWidget {
-  const Splash({Key? key}) : super(key: key);
+class SplashIzlaz extends StatefulWidget {
+  const SplashIzlaz({Key? key}) : super(key: key);
 
 
 
   @override
-  _SplashState createState() => _SplashState();
+  _SplashIzlazState createState() => _SplashIzlazState();
 }
 
-class _SplashState extends State<Splash>
+class _SplashIzlazState extends State<SplashIzlaz>
     with SingleTickerProviderStateMixin {
 
 
@@ -55,7 +55,7 @@ class _SplashState extends State<Splash>
               SizedBox(
                 height: 250,
                   width:250 ,
-                  child: Lottie.network('https://assets4.lottiefiles.com/packages/lf20_m1Cwki.json',
+                  child: Lottie.network('https://assets8.lottiefiles.com/packages/lf20_wc1axoqt.json',
                   repeat: false)
               ),
               SizedBox(
@@ -63,7 +63,7 @@ class _SplashState extends State<Splash>
               ),
           Text('USPJEŠAN UNOS',
               style: GoogleFonts.bebasNeue(
-                  fontSize: 45, fontWeight: FontWeight.bold,color: Colors.red)),
+                  fontSize: 45, fontWeight: FontWeight.bold,color: Colors.green)),
 
 
 

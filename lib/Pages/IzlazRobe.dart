@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:prodajaodjece/Pages/SplashIzlaz.dart';
 
 import '../firebase_options.dart';
 
@@ -15,24 +16,31 @@ class IzlazRobe extends StatefulWidget {
   State<IzlazRobe> createState() => _IzlazRobeState();
 }
 
-
 class _IzlazRobeState extends State<IzlazRobe> {
   final kupacController = TextEditingController();
   final cijenaprodajnaController = TextEditingController();
-  final artikalController = TextEditingController();
+  final searchController = TextEditingController();
   final markaController = TextEditingController();
-@override
- void initState() {
+  @override
+  void initState() {
     super.initState();
-  Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-      );
+    Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
   }
 
+  List<String> searchResult = [];
+  bool isItemSelected = false;
+  void searchFromFirebase(String query) async {
+    final result = await FirebaseFirestore.instance
+        .collection('search')
+        .where('string_id_array', arrayContains: query)
+        .get();
 
-List<String> docIDs = [];
-String dropdownValue = "";
-
+    setState(() {
+      searchResult = result.docs.map((e) => e.data()).cast<String>().toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,16 +94,12 @@ String dropdownValue = "";
                     )),
               ),
             ),
-
-
             Align(
               alignment: Alignment.topLeft,
-             child: Padding(
+              child: Padding(
                 padding: const EdgeInsets.only(left: 25, right: 25, bottom: 10),
 
-    
-
-      /*    child: StreamBuilder<QuerySnapshot>(
+                /*    child: StreamBuilder<QuerySnapshot>(
     stream: FirebaseFirestore.instance.collection('ulaz').snapshots(),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.waiting) {
@@ -142,13 +146,63 @@ String dropdownValue = "";
         );
     },
 ),*/
+
+                child: TextField(
+                  controller: searchController,
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.lightGreen,
+                        width: 3.0,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    floatingLabelBehavior: FloatingLabelBehavior.auto,
+                    prefixIcon: const Icon(
+                      Icons.search_rounded,
+                      color: Colors.lightGreen,
+                    ),
+                    hintText: 'Pretražite artikal',
+                  ),
+                  onChanged: (value) async {
+                    setState(() {
+                      // Update the search results based on the entered text
+                      _filterArtikliByQuery(value).then((result) {
+                        searchResult = result;
+                      });
+                    });
+                  },
+                ),
               ),
             ),
+            // ...
+            if (!isItemSelected && searchResult.isNotEmpty)
+              Expanded(
+                child: ListView.builder(
+                  itemCount: searchResult.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(searchResult[index]),
+                      onTap: () {
+                        // Perform an action when an item is selected
+                        print(searchResult[index]);
+                        searchController.text = searchResult[index];
+                      setState(() {
+              isItemSelected = true;
+            });
+                      },
+                    );
+                  },
+                ),
+              ),
+
             Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 7.0, horizontal: 25.0),
               child: TextField(
-                
                 controller: markaController,
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
@@ -197,11 +251,12 @@ String dropdownValue = "";
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           prodajRobu(
-            artikalController.text.trim(),
+            searchController.text.trim(),
             markaController.text.trim(),
             kupacController.text.trim(),
             int.parse(cijenaprodajnaController.text.trim()),
           );
+          Navigator.push(context, MaterialPageRoute(builder: (context) =>  SplashIzlaz())) ;
         },
         label: const Text('Kupi'),
         icon: const Icon(Icons.attach_money_rounded),
@@ -209,8 +264,9 @@ String dropdownValue = "";
       ),
     );
   }
-  Future prodajRobu(String artikal, String marka, String kupac,
-      int cijena) async {
+
+  Future prodajRobu(
+      String artikal, String marka, String kupac, int cijena) async {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
@@ -222,5 +278,21 @@ String dropdownValue = "";
       'kupac': kupac,
       'cijena': cijena,
     });
+  }
+
+  Future<List<String>> _filterArtikliByQuery(String query) async {
+    // Fetch data from Firebase
+    final izlaz = await FirebaseFirestore.instance.collection('izlaz').get();
+
+    // Extract artikal values from the fetched data
+    final artikli = izlaz.docs.map((doc) => doc['artikal'] as String).toList();
+
+    // Filter the data source based on the entered text
+    final filteredArtikli = artikli
+        .where((artikal) =>
+            artikal.toLowerCase().contains(query.trim().toLowerCase()))
+        .toList();
+
+    return filteredArtikli;
   }
 }
