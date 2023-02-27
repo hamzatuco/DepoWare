@@ -169,10 +169,15 @@ class _IzlazRobeState extends State<IzlazRobe> {
                   ),
                   onChanged: (value) async {
                     setState(() {
-                      // Update the search results based on the entered text
-                      _filterArtikliByQuery(value).then((result) {
-                        searchResult = result;
-                      });
+                      if (value.length >= 1) {
+                        // Update the search results based on the entered text
+                        _filterArtikliByQuery(value).then((result) {
+                          searchResult = result;
+                        });
+                      } else {
+                        searchResult =
+                            []; // Clear the search results when the user deletes characters
+                      }
                     });
                   },
                 ),
@@ -180,25 +185,27 @@ class _IzlazRobeState extends State<IzlazRobe> {
             ),
             // ...
             if (!isItemSelected && searchResult.isNotEmpty)
-              Expanded(
-                child: ListView.builder(
-                  itemCount: searchResult.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(searchResult[index]),
-                      onTap: () {
-                        // Perform an action when an item is selected
-                        print(searchResult[index]);
-                        searchController.text = searchResult[index];
-                      setState(() {
-              isItemSelected = true;
-            });
-                      },
-                    );
-                  },
+              SingleChildScrollView(
+                child: SizedBox(
+                  height: 300, // Replace with your desired height
+                  child: ListView.builder(
+                    itemCount: searchResult.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(searchResult[index]),
+                        onTap: () {
+                          // Perform an action when an item is selected
+                          print(searchResult[index]);
+                          searchController.text = searchResult[index];
+                          setState(() {
+                            isItemSelected = true;
+                          });
+                        },
+                      );
+                    },
+                  ),
                 ),
               ),
-
             Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 7.0, horizontal: 25.0),
@@ -256,7 +263,8 @@ class _IzlazRobeState extends State<IzlazRobe> {
             kupacController.text.trim(),
             int.parse(cijenaprodajnaController.text.trim()),
           );
-          Navigator.push(context, MaterialPageRoute(builder: (context) =>  SplashIzlaz())) ;
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SplashIzlaz()));
         },
         label: const Text('Kupi'),
         icon: const Icon(Icons.attach_money_rounded),
@@ -287,8 +295,15 @@ class _IzlazRobeState extends State<IzlazRobe> {
     // Extract artikal values from the fetched data
     final artikli = izlaz.docs.map((doc) => doc['artikal'] as String).toList();
 
-    // Filter the data source based on the entered text
-    final filteredArtikli = artikli
+    // Group the artikli by their name and count the number of occurrences
+    final artikalCounts = <String, int>{};
+    for (final artikal in artikli) {
+      artikalCounts[artikal] = (artikalCounts[artikal] ?? 0) + 1;
+    }
+
+    // Filter the data source based on the entered text, but only include
+    // one instance of each artikal name
+    final filteredArtikli = artikalCounts.keys
         .where((artikal) =>
             artikal.toLowerCase().contains(query.trim().toLowerCase()))
         .toList();
