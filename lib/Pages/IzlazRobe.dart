@@ -167,6 +167,8 @@ class _IzlazRobeState extends State<IzlazRobe> {
                     ),
                     hintText: 'Pretražite artikal',
                   ),
+
+                  //logika
                   onChanged: (value) async {
                     setState(() {
                       if (value.length >= 1) {
