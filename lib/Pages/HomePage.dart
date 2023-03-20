@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                         child: Text('Zdravo, izaberite neku\nod opcija',
                             textAlign: TextAlign.center,
                             overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.roboto(
+                            style: GoogleFonts.poppins(
                                 fontSize: 29, fontWeight: FontWeight.bold)),
                       ),
                     ),
@@ -87,8 +87,8 @@ class _HomePageState extends State<HomePage> {
                         child: Text('Ulaz robe',
                             textAlign: TextAlign.center,
                             overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.roboto(
-                                fontSize: 17, fontWeight: FontWeight.bold)),
+                            style: GoogleFonts.poppins(
+                                fontSize: 16, fontWeight: FontWeight.w600)),
                       ),
                     ),
                     const SizedBox(
@@ -114,8 +114,8 @@ class _HomePageState extends State<HomePage> {
                         child: Text('Izlaz robe',
                             textAlign: TextAlign.center,
                             overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.roboto(
-                                fontSize: 17, fontWeight: FontWeight.bold)),
+                            style: GoogleFonts.poppins(
+                                fontSize: 16, fontWeight: FontWeight.w600)),
                       ),
                     ),
                     const SizedBox(
@@ -141,8 +141,8 @@ class _HomePageState extends State<HomePage> {
                         child: Text('Transakcije',
                             textAlign: TextAlign.center,
                             overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.roboto(
-                                fontSize: 17, fontWeight: FontWeight.bold)),
+                            style: GoogleFonts.poppins(
+                                fontSize: 16, fontWeight: FontWeight.w600)),
                       ),
                     ),
                     const SizedBox(
@@ -168,8 +168,8 @@ class _HomePageState extends State<HomePage> {
                         child: Text('TEST',
                             textAlign: TextAlign.center,
                             overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.roboto(
-                                fontSize: 17, fontWeight: FontWeight.bold)),
+                            style: GoogleFonts.poppins(
+                                fontSize: 16, fontWeight: FontWeight.w600)),
                       ),
                     ),
                     const SizedBox(height: 25),

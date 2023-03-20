@@ -52,13 +52,13 @@ class _IzlazRobeState extends State<IzlazRobe> {
         child: Column(
           children: [
             Align(
-              alignment: Alignment.topLeft,
+              alignment: Alignment.center,
               child: Padding(
-                padding: const EdgeInsets.all(25.0),
+                padding: const EdgeInsets.all(30.0),
                 child: Text('PRODAJA',
-                    style: GoogleFonts.bebasNeue(
+                    style: GoogleFonts.poppins(
                       fontSize: 35,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w800,
                       color: Colors.lightGreen,
                     )),
               ),
@@ -68,6 +68,10 @@ class _IzlazRobeState extends State<IzlazRobe> {
                   const EdgeInsets.symmetric(vertical: 7.0, horizontal: 25.0),
               child: TextField(
                 controller: kupacController,
+                style: GoogleFonts.archivo(
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderSide:
@@ -80,6 +84,10 @@ class _IzlazRobeState extends State<IzlazRobe> {
                   prefixIcon:
                       const Icon(Icons.person, color: Colors.lightGreen),
                   hintText: 'Kupac',
+                  hintStyle: GoogleFonts.archivo(
+                    fontSize: 16,
+                    color: Colors.grey,
+                  ),
                 ),
               ),
             ),
@@ -147,64 +155,143 @@ class _IzlazRobeState extends State<IzlazRobe> {
     },
 ),*/
 
-                child: TextField(
-                  controller: searchController,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Colors.lightGreen,
-                        width: 3.0,
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    floatingLabelBehavior: FloatingLabelBehavior.auto,
-                    prefixIcon: const Icon(
-                      Icons.search_rounded,
-                      color: Colors.lightGreen,
-                    ),
-                    hintText: 'Pretražite artikal',
-                  ),
+//mnogo posla oko ovog searcha
+//dizajn
+                child: isItemSelected
+                    ? Stack(
+                        children: [
+                          TextFormField(
+                            controller: searchController,
+                            style: GoogleFonts.archivo(
+                              fontSize: 16,
+                              color: Colors.black,
+                            ),
+                            enabled: false,
+                            decoration: InputDecoration(
+                              hintText: searchController.text,
+                              prefixIcon: const Icon(Icons.search_rounded,
+                                  color: Colors.lightGreen),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Colors.lightGreen,
+                                  width: 3.0,
+                                ),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 0,
+                            top: 0,
+                            bottom: 0,
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  isItemSelected = false;
+                                });
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Icon(Icons.edit_rounded,
+                                    color: Colors.lightGreen),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : TextField(
+                        controller: searchController,
+                        style: GoogleFonts.archivo(
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Colors.lightGreen,
+                              width: 3.0,
+                            ),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+                          prefixIcon: const Icon(
+                            Icons.search_rounded,
+                            color: Colors.lightGreen,
+                          ),
+                          hintText: 'Pretražite artikal',
+                          hintStyle: GoogleFonts.archivo(
+                            fontSize: 16,
+                            color: Colors.grey,
+                          ),
+                        ),
 
-                  //logika
-                  onChanged: (value) async {
-                    setState(() {
-                      if (value.length >= 1) {
-                        // Update the search results based on the entered text
-                        _filterArtikliByQuery(value).then((result) {
-                          searchResult = result;
-                        });
-                      } else {
-                        searchResult =
-                            []; // Clear the search results when the user deletes characters
-                      }
-                    });
-                  },
-                ),
-              ),
-            ),
-            // ...
-            if (!isItemSelected && searchResult.isNotEmpty)
-              SingleChildScrollView(
-                child: SizedBox(
-                  height: 300, // Replace with your desired height
-                  child: ListView.builder(
-                    itemCount: searchResult.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(searchResult[index]),
-                        onTap: () {
-                          // Perform an action when an item is selected
-                          print(searchResult[index]);
-                          searchController.text = searchResult[index];
+                        //klik
+                        onChanged: (value) async {
                           setState(() {
-                            isItemSelected = true;
+                            if (value.isNotEmpty) {
+                              // Update the search results based on the entered text
+                              _filterArtikliByQuery(value).then((result) {
+                                searchResult = result;
+                              });
+                            } else {
+                              searchResult =
+                                  []; // Clear the search results when the user deletes characters
+                            }
                           });
                         },
-                      );
-                    },
+                      ),
+              ),
+            ),
+
+//logika
+            if (!isItemSelected && searchResult.isNotEmpty)
+              SingleChildScrollView(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 25, right: 25, bottom: 10),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(color: Colors.lightGreen, width: 1.5),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: SizedBox(
+                        height: 200,
+                        child: ListView.builder(
+                          itemCount: searchResult.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.lightGreen, width: 1.0),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: ListTile(
+                                title: Text(
+                                  searchResult[index],
+                                  style: GoogleFonts.archivo(fontSize: 16),
+                                ),
+                                onTap: () {
+                                  searchController.text = searchResult[index];
+                                  setState(() {
+                                    isItemSelected = true;
+                                  });
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -213,6 +300,10 @@ class _IzlazRobeState extends State<IzlazRobe> {
                   const EdgeInsets.symmetric(vertical: 7.0, horizontal: 25.0),
               child: TextField(
                 controller: markaController,
+                style: GoogleFonts.archivo(
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderSide:
@@ -228,6 +319,10 @@ class _IzlazRobeState extends State<IzlazRobe> {
                     color: Colors.lightGreen,
                   ),
                   hintText: 'Marka',
+                  hintStyle: GoogleFonts.archivo(
+                    fontSize: 16,
+                    color: Colors.grey,
+                  ),
                 ),
               ),
             ),
@@ -236,6 +331,10 @@ class _IzlazRobeState extends State<IzlazRobe> {
                   const EdgeInsets.symmetric(vertical: 7.0, horizontal: 25.0),
               child: TextField(
                 controller: cijenaprodajnaController,
+                style: GoogleFonts.archivo(
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderSide:
@@ -251,6 +350,10 @@ class _IzlazRobeState extends State<IzlazRobe> {
                     color: Colors.lightGreen,
                   ),
                   hintText: 'Unesite cijenu',
+                  hintStyle: GoogleFonts.archivo(
+                    fontSize: 16,
+                    color: Colors.grey,
+                  ),
                 ),
               ),
             ),
@@ -265,8 +368,8 @@ class _IzlazRobeState extends State<IzlazRobe> {
             kupacController.text.trim(),
             int.parse(cijenaprodajnaController.text.trim()),
           );
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SplashIzlaz()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const SplashIzlaz()));
         },
         label: const Text('Kupi'),
         icon: const Icon(Icons.attach_money_rounded),

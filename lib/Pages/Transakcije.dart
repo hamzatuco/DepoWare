@@ -12,91 +12,28 @@ class Transakcije extends StatefulWidget {
 }
 
 class _TransakcijeState extends State<Transakcije> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepPurple,
-
         ),
-
-        body: SingleChildScrollView (
+        body: SingleChildScrollView(
             child: Column(
-              children:  [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.all(25.0),
-
-                    child: Text(
-                        'TRANSAKCIJE',
-                        style: GoogleFonts.bebasNeue(fontSize: 35,fontWeight: FontWeight.bold,color: Colors.deepPurple,)),
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Container(
-                    margin: const EdgeInsets.all(10.0),
-                    color: Colors.deepPurple.shade50,
-                    width: double.infinity,
-                    height: 248.0,
-
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Container(
-                    margin: const EdgeInsets.all(10.0),
-                    color: Colors.deepPurple.shade50,
-                    width: double.infinity,
-                    height: 248.0,
-
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Container(
-                    margin: const EdgeInsets.all(10.0),
-                    color: Colors.deepPurple.shade50,
-                    width: double.infinity,
-                    height: 248.0,
-
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Container(
-                    margin: const EdgeInsets.all(10.0),
-                    color: Colors.deepPurple.shade50,
-                    width: double.infinity,
-                    height: 248.0,
-
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Container(
-                    margin: const EdgeInsets.all(10.0),
-                    color: Colors.deepPurple.shade50,
-                    width: double.infinity,
-                    height: 248.0,
-
-                  ),
-                ),
-
-
-
-              ],
-
-            )
-        )
-    );
-
+          children: [
+            Align(
+              alignment: Alignment.center,
+              child: Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Text('TRANSAKCIJE',
+                    style: GoogleFonts.poppins(
+                      fontSize: 35,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.deepPurple,
+                    )),
+              ),
+            ),
+          ],
+        )));
   }
 }

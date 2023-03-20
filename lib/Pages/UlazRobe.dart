@@ -7,18 +7,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
-
 import '../firebase_options.dart';
 
-
-
-
 void main() async {
-
   runApp(const UlazRobe());
 }
-
 
 class UlazRobe extends StatefulWidget {
   const UlazRobe({Key? key}) : super(key: key);
@@ -34,55 +27,67 @@ class _UlazRobeState extends State<UlazRobe> {
   final nabavljacController = TextEditingController();
 
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
       ),
       body: SingleChildScrollView(
-
-
         child: Column(
           children: [
             Align(
-              alignment: Alignment.topLeft,
+              alignment: Alignment.center,
               child: Padding(
-                padding: const EdgeInsets.all(25.0),
+                padding: const EdgeInsets.all(30.0),
                 child: Text('ULAZ ROBE',
-                    style: GoogleFonts.bebasNeue(
-                        fontSize: 35, fontWeight: FontWeight.bold)),
+                    style: GoogleFonts.poppins(
+                      fontSize: 35,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.red,
+                    )),
               ),
             ),
             Padding(
               padding:
-              const EdgeInsets.symmetric(vertical: 7.0, horizontal: 25.0),
+                  const EdgeInsets.symmetric(vertical: 7.0, horizontal: 25.0),
               child: TextField(
                 controller: artikalController,
+                style: GoogleFonts.archivo(
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    const BorderSide(color: Colors.redAccent, width: 3.0),
+                        const BorderSide(color: Colors.redAccent, width: 3.0),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
                   prefixIcon:
-                  const Icon(Icons.shopping_cart, color: Colors.redAccent),
+                      const Icon(Icons.shopping_cart, color: Colors.redAccent),
                   hintText: 'Artikal',
+                  hintStyle: GoogleFonts.archivo(
+                    fontSize: 16,
+                    color: Colors.grey,
+                  ),
                 ),
               ),
             ),
             Padding(
               padding:
-              const EdgeInsets.symmetric(vertical: 7.0, horizontal: 25.0),
+                  const EdgeInsets.symmetric(vertical: 7.0, horizontal: 25.0),
               child: TextField(
                 controller: markaController,
+                style: GoogleFonts.archivo(
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    const BorderSide(color: Colors.redAccent, width: 3.0),
+                        const BorderSide(color: Colors.redAccent, width: 3.0),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   border: OutlineInputBorder(
@@ -94,18 +99,26 @@ class _UlazRobeState extends State<UlazRobe> {
                     color: Colors.redAccent,
                   ),
                   hintText: 'Marka',
+                  hintStyle: GoogleFonts.archivo(
+                    fontSize: 16,
+                    color: Colors.grey,
+                  ),
                 ),
               ),
             ),
             Padding(
               padding:
-              const EdgeInsets.symmetric(vertical: 7.0, horizontal: 25.0),
+                  const EdgeInsets.symmetric(vertical: 7.0, horizontal: 25.0),
               child: TextField(
                 controller: nabavnacijenaController,
+                style: GoogleFonts.archivo(
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    const BorderSide(color: Colors.redAccent, width: 3.0),
+                        const BorderSide(color: Colors.redAccent, width: 3.0),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   border: OutlineInputBorder(
@@ -117,18 +130,26 @@ class _UlazRobeState extends State<UlazRobe> {
                     color: Colors.redAccent,
                   ),
                   hintText: 'Nabavna cijena',
+                  hintStyle: GoogleFonts.archivo(
+                    fontSize: 16,
+                    color: Colors.grey,
+                  ),
                 ),
               ),
             ),
             Padding(
               padding:
-              const EdgeInsets.symmetric(vertical: 7.0, horizontal: 25.0),
+                  const EdgeInsets.symmetric(vertical: 7.0, horizontal: 25.0),
               child: TextField(
                 controller: nabavljacController,
+                style: GoogleFonts.archivo(
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    const BorderSide(color: Colors.redAccent, width: 3.0),
+                        const BorderSide(color: Colors.redAccent, width: 3.0),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   border: OutlineInputBorder(
@@ -137,6 +158,10 @@ class _UlazRobeState extends State<UlazRobe> {
                   floatingLabelBehavior: FloatingLabelBehavior.auto,
                   prefixIcon: const Icon(Icons.person, color: Colors.redAccent),
                   hintText: 'Nabavljac',
+                  hintStyle: GoogleFonts.archivo(
+                    fontSize: 16,
+                    color: Colors.grey,
+                  ),
                 ),
               ),
             ),
@@ -151,8 +176,8 @@ class _UlazRobeState extends State<UlazRobe> {
             nabavljacController.text.trim(),
             int.parse(nabavnacijenaController.text.trim()),
           );
-          Navigator.push(context, MaterialPageRoute(builder: (context) =>  Splash())) ;
-
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Splash()));
         },
         label: const Text('Unesi robu'),
         icon: const Icon(Icons.save_alt_rounded),
@@ -161,13 +186,12 @@ class _UlazRobeState extends State<UlazRobe> {
     );
   }
 
-
-  Future dodajRobu(String artikal, String marka, String nabavljac,
-      int nabavnaCijena) async {
+  Future dodajRobu(
+      String artikal, String marka, String nabavljac, int nabavnaCijena) async {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-);
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     await FirebaseFirestore.instance.collection('ulaz').add({
       'artikal': artikal,
       'marka': marka,
