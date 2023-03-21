@@ -107,54 +107,6 @@ class _IzlazRobeState extends State<IzlazRobe> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 25, right: 25, bottom: 10),
 
-                /*    child: StreamBuilder<QuerySnapshot>(
-    stream: FirebaseFirestore.instance.collection('ulaz').snapshots(),
-    builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.waiting) {
-      return const Center(child: CircularProgressIndicator());
-    }
-        if (!snapshot.hasData) {
-            return DropdownButtonFormField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                    ),
-                    prefixIcon: const Icon(Icons.shopping_cart,
-                        color: Colors.lightGreen),
-                ),
-                iconDisabledColor: Colors.lightGreen,
-                dropdownColor: Colors.lightGreen,
-                items: const [],
-                onChanged: null,
-            );
-        }
-        return DropdownButtonFormField(
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                ),
-                prefixIcon: const Icon(Icons.shopping_cart,
-                    color: Colors.lightGreen),
-            ),
-            value: dropdownValue,
-            iconDisabledColor: Colors.lightGreen,
-            dropdownColor: Colors.lightGreen,
-            items: snapshot.data!.docs.map((doc) {
-                return DropdownMenuItem(
-                    value: doc['artikal'],
-                    child: Text(doc['artikal']),
-                );
-            }).toList(),
-            onChanged: (value) {
-                setState(() {
-                    dropdownValue = value.toString();
-                    artikalController.text = value.toString();
-                });
-            },
-        );
-    },
-),*/
-
 //mnogo posla oko ovog searcha
 //dizajn
                 child: isItemSelected
