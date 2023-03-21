@@ -48,7 +48,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
       appBar: AppBar(
         backgroundColor: Colors.lightGreen,
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             Align(
