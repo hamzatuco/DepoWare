@@ -21,6 +21,7 @@ class _TransakcijeState extends State<Transakcije> {
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -51,7 +52,7 @@ class _TransakcijeState extends State<Transakcije> {
                 }
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   default:
                     return ListView.builder(
                       itemCount: snapshot.data!.docs.length,
@@ -60,32 +61,31 @@ class _TransakcijeState extends State<Transakcije> {
                             .data()! as Map<String, dynamic>;
                         return Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: Container(
-                            child: SizedBox(
-                              height: 140,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.deepPurple.withOpacity(0.20),
-                                  border: Border.all(
-                                      color: Colors.deepPurple, width: 1.5),
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: ListTile(
-                                  title: Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                    child: Text(
-                                      data['artikal'],
-                                      style: GoogleFonts.archivo(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600),
-                                    ),
+                          child: SizedBox(
+                            height: 150,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.deepPurple.withOpacity(0.20),
+                                border: Border.all(
+                                    color: Colors.deepPurple, width: 1.5),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: ListTile(
+                                title: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                  child: Text(
+                                    data['artikal'],
+                                    style: GoogleFonts.archivo(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600),
                                   ),
-                                  subtitle: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
+                                ),
+                                subtitle: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Flexible(
+                                      child: Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             0, 12, 0, 0),
                                         child: Text(
@@ -95,7 +95,9 @@ class _TransakcijeState extends State<Transakcije> {
                                               fontWeight: FontWeight.w500),
                                         ),
                                       ),
-                                      Padding(
+                                    ),
+                                    Flexible(
+                                      child: Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             0, 12, 0, 0),
                                         child: Text(
@@ -105,7 +107,9 @@ class _TransakcijeState extends State<Transakcije> {
                                               fontWeight: FontWeight.w500),
                                         ),
                                       ),
-                                      Padding(
+                                    ),
+                                    Flexible(
+                                      child: Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             0, 12, 0, 0),
                                         child: Text(
@@ -115,8 +119,8 @@ class _TransakcijeState extends State<Transakcije> {
                                               fontWeight: FontWeight.w500),
                                         ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),

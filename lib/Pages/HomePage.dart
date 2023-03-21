@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:prodajaodjece/Pages/Test.dart';
 import 'UlazRobe.dart';
 import 'IzlazRobe.dart';
 import 'Transakcije.dart';
@@ -30,7 +29,7 @@ class _HomePageState extends State<HomePage> {
         body: Center(
             child: Padding(
       padding: const EdgeInsets.all(30),
-      child: Container(
+      child: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Stack(children: [
@@ -139,33 +138,6 @@ class _HomePageState extends State<HomePage> {
                                   builder: (context) => const Transakcije()));
                         },
                         child: Text('Transakcije',
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.poppins(
-                                fontSize: 16, fontWeight: FontWeight.w600)),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    SizedBox(
-                      height: 51, //height of button
-                      width: 200, //width of button
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.deepOrangeAccent,
-                          textStyle: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontStyle: FontStyle.normal),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Test()));
-                        },
-                        child: Text('TEST',
                             textAlign: TextAlign.center,
                             overflow: TextOverflow.ellipsis,
                             style: GoogleFonts.poppins(
