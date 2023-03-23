@@ -1,4 +1,4 @@
-//unos kod artikla, search, precica, tolowercase
+//search i na ulazu, transakcije sortirat od recent i ulaz izlaz
 // ignore_for_file: file_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -42,6 +42,20 @@ class _IzlazRobeState extends State<IzlazRobe> {
     });
   }
 
+  List<String> izlazSearchResult = [];
+  bool isIzlazItemSelected = false;
+  void searchFromIzlaz(String query) async {
+    final result = await FirebaseFirestore.instance
+        .collection('izlaz')
+        .where('kupac', isEqualTo: query)
+        .get();
+
+    setState(() {
+      izlazSearchResult =
+          result.docs.map((e) => e.data()).cast<String>().toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,34 +77,152 @@ class _IzlazRobeState extends State<IzlazRobe> {
                     )),
               ),
             ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 7.0, horizontal: 25.0),
-              child: TextField(
-                controller: kupacController,
-                style: GoogleFonts.archivo(
-                  fontSize: 16,
-                  color: Colors.black,
-                ),
-                decoration: InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Colors.lightGreen, width: 3.0),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  prefixIcon:
-                      const Icon(Icons.person, color: Colors.lightGreen),
-                  hintText: 'Kupac',
-                  hintStyle: GoogleFonts.archivo(
-                    fontSize: 16,
-                    color: Colors.grey,
+////////////////////////////////////////////////////////7
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 25, right: 25, bottom: 10),
+                child: isIzlazItemSelected
+                    ? Stack(
+                        children: [
+                          TextFormField(
+                            controller: kupacController,
+                            style: GoogleFonts.archivo(
+                              fontSize: 16,
+                              color: Colors.black,
+                            ),
+                            enabled: false,
+                            decoration: InputDecoration(
+                              hintText: kupacController.text,
+                              prefixIcon: const Icon(Icons.search_rounded,
+                                  color: Colors.lightGreen),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Colors.lightGreen,
+                                  width: 3.0,
+                                ),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 0,
+                            top: 0,
+                            bottom: 0,
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  isIzlazItemSelected = false;
+                                });
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Icon(Icons.edit_rounded,
+                                    color: Colors.lightGreen),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : TextField(
+                        controller: kupacController,
+                        style: GoogleFonts.archivo(
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Colors.lightGreen,
+                              width: 3.0,
+                            ),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+                          prefixIcon: const Icon(
+                            Icons.search_rounded,
+                            color: Colors.lightGreen,
+                          ),
+                          hintText: 'Kupac',
+                          hintStyle: GoogleFonts.archivo(
+                            fontSize: 16,
+                            color: Colors.grey,
+                          ),
+                        ),
+
+                        //klik
+                        onChanged: (value) async {
+                          setState(() {
+                            if (value.isNotEmpty) {
+                              // Update the search results based on the entered text
+                              _filterKupciByQuery(value).then((result) {
+                                izlazSearchResult = result;
+                              });
+                            } else {
+                              izlazSearchResult =
+                                  []; // Clear the search results when the user deletes characters
+                            }
+                          });
+                        },
+                      ),
+              ),
+            ),
+
+            ////////////////////////////////////////////////////////////////////////////////
+
+//logika
+            if (!isIzlazItemSelected && izlazSearchResult.isNotEmpty)
+              SingleChildScrollView(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 25, right: 25, bottom: 10),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(color: Colors.lightGreen, width: 1.5),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: SizedBox(
+                        height: 200,
+                        child: ListView.builder(
+                          itemCount: izlazSearchResult.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.lightGreen, width: 1.0),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: ListTile(
+                                title: Text(
+                                  izlazSearchResult[index],
+                                  style: GoogleFonts.archivo(fontSize: 16),
+                                ),
+                                onTap: () {
+                                  kupacController.text =
+                                      izlazSearchResult[index];
+                                  setState(() {
+                                    isIzlazItemSelected = true;
+                                  });
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
             Align(
               alignment: Alignment.topLeft,
               child: Padding(
@@ -366,5 +498,28 @@ class _IzlazRobeState extends State<IzlazRobe> {
         .toList();
 
     return filteredArtikli;
+  }
+
+  Future<List<String>> _filterKupciByQuery(String query) async {
+    // Fetch data from Firebase
+    final izlaz = await FirebaseFirestore.instance.collection('izlaz').get();
+
+    // Extract artikal values from the fetched data
+    final kupci = izlaz.docs.map((doc) => doc['kupac'] as String).toList();
+
+    // Group the artikli by their name and count the number of occurrences
+    final kupacCounts = <String, int>{};
+    for (final kupci in kupci) {
+      kupacCounts[kupci] = (kupacCounts[kupci] ?? 0) + 1;
+    }
+
+    // Filter the data source based on the entered text, but only include
+    // one instance of each artikal name
+    final filteredKupci = kupacCounts.keys
+        .where((artikal) =>
+            artikal.toLowerCase().contains(query.trim().toLowerCase()))
+        .toList();
+
+    return filteredKupci;
   }
 }
