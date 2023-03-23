@@ -13,12 +13,20 @@ class Transakcije extends StatefulWidget {
 }
 
 class _TransakcijeState extends State<Transakcije> {
+  String activeCollection = 'ulaz';
+
   @override
   void initState() {
     super.initState();
     Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+  }
+
+  Future<void> _switchCollection(String collection) async {
+    setState(() {
+      activeCollection = collection;
+    });
   }
 
   @override
@@ -42,9 +50,55 @@ class _TransakcijeState extends State<Transakcije> {
                   )),
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 45, 25),
+                child: SizedBox(
+                  height: 40, //height of button
+                  width: 100,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green.withOpacity(0.5),
+                      textStyle: GoogleFonts.poppins(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
+                    onPressed: () => _switchCollection('ulaz'),
+                    child: Text('Ulaz'),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 25),
+                child: SizedBox(
+                  height: 40, //height of button
+                  width: 100,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red.withOpacity(0.9),
+                      textStyle: GoogleFonts.poppins(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
+                    onPressed: () => _switchCollection('izlaz'),
+                    child: Text('Izlaz'),
+                  ),
+                ),
+              ),
+            ],
+          ),
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance.collection('ulaz').snapshots(),
+              stream: FirebaseFirestore.instance
+                  .collection(activeCollection)
+                  .orderBy('datumDodavanja', descending: true)
+                  .snapshots(),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasError) {
@@ -100,24 +154,48 @@ class _TransakcijeState extends State<Transakcije> {
                                       child: Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             0, 12, 0, 0),
-                                        child: Text(
-                                          'Nabavljač: ${data['nabavljac']}',
-                                          style: GoogleFonts.archivo(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500),
-                                        ),
+                                        child: activeCollection == 'ulaz'
+                                            ? Text(
+                                                'Nabavljac: ${data.containsKey('nabavljac') ? data['nabavljac'] : ''}',
+                                                style: GoogleFonts.archivo(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              )
+                                            : activeCollection == 'izlaz'
+                                                ? Text(
+                                                    'Kupac: ${data.containsKey('kupac') ? data['kupac'] : ''}',
+                                                    style: GoogleFonts.archivo(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  )
+                                                : Container(),
                                       ),
                                     ),
                                     Flexible(
                                       child: Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             0, 12, 0, 0),
-                                        child: Text(
-                                          'Nabavna cijena: ${data['nabavnaCijena']} KM',
-                                          style: GoogleFonts.archivo(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500),
-                                        ),
+                                        child: activeCollection == 'ulaz'
+                                            ? Text(
+                                                'Nabavna cijena: ${data.containsKey('nabavnaCijena') ? data['nabavnaCijena'] : ''}',
+                                                style: GoogleFonts.archivo(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              )
+                                            : activeCollection == 'izlaz'
+                                                ? Text(
+                                                    'Prodajna cijena: ${data.containsKey('cijena') ? data['cijena'] : ''}',
+                                                    style: GoogleFonts.archivo(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  )
+                                                : Container(),
                                       ),
                                     ),
                                   ],

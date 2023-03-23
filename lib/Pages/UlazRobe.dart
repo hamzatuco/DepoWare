@@ -587,6 +587,7 @@ class _UlazRobeState extends State<UlazRobe> {
       'marka': marka,
       'nabavljac': nabavljac,
       'nabavnaCijena': nabavnaCijena,
+      'datumDodavanja': DateTime.now(),
     });
   }
 

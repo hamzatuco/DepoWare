@@ -1,4 +1,4 @@
-//search i na ulazu, transakcije sortirat od recent i ulaz izlaz
+//login
 // ignore_for_file: file_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -595,6 +595,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
       'marka': marka,
       'kupac': kupac,
       'cijena': cijena,
+      'datumDodavanja': DateTime.now(),
     });
   }
 
