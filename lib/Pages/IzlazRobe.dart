@@ -42,8 +42,8 @@ class _IzlazRobeState extends State<IzlazRobe> {
     });
   }
 
-  List<String> izlazSearchResult = [];
-  bool isIzlazItemSelected = false;
+  List<String> kupacResult = [];
+  bool isKupacSelected = false;
   void searchFromIzlaz(String query) async {
     final result = await FirebaseFirestore.instance
         .collection('izlaz')
@@ -51,8 +51,20 @@ class _IzlazRobeState extends State<IzlazRobe> {
         .get();
 
     setState(() {
-      izlazSearchResult =
-          result.docs.map((e) => e.data()).cast<String>().toList();
+      kupacResult = result.docs.map((e) => e.data()).cast<String>().toList();
+    });
+  }
+
+  List<String> markaResult = [];
+  bool isMarkaSelected = false;
+  void searchMarka(String query) async {
+    final result = await FirebaseFirestore.instance
+        .collection('izlaz')
+        .where('marka', isEqualTo: query)
+        .get();
+
+    setState(() {
+      markaResult = result.docs.map((e) => e.data()).cast<String>().toList();
     });
   }
 
@@ -82,7 +94,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
               alignment: Alignment.topLeft,
               child: Padding(
                 padding: const EdgeInsets.only(left: 25, right: 25, bottom: 10),
-                child: isIzlazItemSelected
+                child: isKupacSelected
                     ? Stack(
                         children: [
                           TextFormField(
@@ -94,7 +106,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                             enabled: false,
                             decoration: InputDecoration(
                               hintText: kupacController.text,
-                              prefixIcon: const Icon(Icons.search_rounded,
+                              prefixIcon: const Icon(Icons.person,
                                   color: Colors.lightGreen),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
@@ -115,7 +127,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                             child: InkWell(
                               onTap: () {
                                 setState(() {
-                                  isIzlazItemSelected = false;
+                                  isKupacSelected = false;
                                 });
                               },
                               child: const Padding(
@@ -146,7 +158,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.auto,
                           prefixIcon: const Icon(
-                            Icons.search_rounded,
+                            Icons.person,
                             color: Colors.lightGreen,
                           ),
                           hintText: 'Kupac',
@@ -162,10 +174,10 @@ class _IzlazRobeState extends State<IzlazRobe> {
                             if (value.isNotEmpty) {
                               // Update the search results based on the entered text
                               _filterKupciByQuery(value).then((result) {
-                                izlazSearchResult = result;
+                                kupacResult = result;
                               });
                             } else {
-                              izlazSearchResult =
+                              kupacResult =
                                   []; // Clear the search results when the user deletes characters
                             }
                           });
@@ -174,10 +186,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
               ),
             ),
 
-            ////////////////////////////////////////////////////////////////////////////////
-
-//logika
-            if (!isIzlazItemSelected && izlazSearchResult.isNotEmpty)
+            if (!isKupacSelected && kupacResult.isNotEmpty)
               SingleChildScrollView(
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -193,7 +202,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                       child: SizedBox(
                         height: 200,
                         child: ListView.builder(
-                          itemCount: izlazSearchResult.length,
+                          itemCount: kupacResult.length,
                           itemBuilder: (context, index) {
                             return Container(
                               height: 50,
@@ -204,14 +213,13 @@ class _IzlazRobeState extends State<IzlazRobe> {
                               ),
                               child: ListTile(
                                 title: Text(
-                                  izlazSearchResult[index],
+                                  kupacResult[index],
                                   style: GoogleFonts.archivo(fontSize: 16),
                                 ),
                                 onTap: () {
-                                  kupacController.text =
-                                      izlazSearchResult[index];
+                                  kupacController.text = kupacResult[index];
                                   setState(() {
-                                    isIzlazItemSelected = true;
+                                    isKupacSelected = true;
                                   });
                                 },
                               ),
@@ -223,6 +231,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                   ),
                 ),
               ),
+            ////////////////////////////////////////////////////////////////////////////////
             Align(
               alignment: Alignment.topLeft,
               child: Padding(
@@ -379,37 +388,149 @@ class _IzlazRobeState extends State<IzlazRobe> {
                   ),
                 ),
               ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 7.0, horizontal: 25.0),
-              child: TextField(
-                controller: markaController,
-                style: GoogleFonts.archivo(
-                  fontSize: 16,
-                  color: Colors.black,
-                ),
-                decoration: InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Colors.lightGreen, width: 3.0),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  floatingLabelBehavior: FloatingLabelBehavior.auto,
-                  prefixIcon: const Icon(
-                    Icons.shopping_bag_rounded,
-                    color: Colors.lightGreen,
-                  ),
-                  hintText: 'Marka',
-                  hintStyle: GoogleFonts.archivo(
-                    fontSize: 16,
-                    color: Colors.grey,
+
+            ///////////////////////////////////////////////
+
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 25, right: 25, bottom: 10),
+                child: isMarkaSelected
+                    ? Stack(
+                        children: [
+                          TextFormField(
+                            controller: markaController,
+                            style: GoogleFonts.archivo(
+                              fontSize: 16,
+                              color: Colors.black,
+                            ),
+                            enabled: false,
+                            decoration: InputDecoration(
+                              hintText: markaController.text,
+                              prefixIcon: const Icon(Icons.attach_money,
+                                  color: Colors.lightGreen),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Colors.lightGreen,
+                                  width: 3.0,
+                                ),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 0,
+                            top: 0,
+                            bottom: 0,
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  isMarkaSelected = false;
+                                });
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Icon(Icons.edit_rounded,
+                                    color: Colors.lightGreen),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : TextField(
+                        controller: markaController,
+                        style: GoogleFonts.archivo(
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Colors.lightGreen,
+                              width: 3.0,
+                            ),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+                          prefixIcon: const Icon(
+                            Icons.shopping_bag_outlined,
+                            color: Colors.lightGreen,
+                          ),
+                          hintText: 'Marka',
+                          hintStyle: GoogleFonts.archivo(
+                            fontSize: 16,
+                            color: Colors.grey,
+                          ),
+                        ),
+
+                        //klik
+                        onChanged: (value) async {
+                          setState(() {
+                            if (value.isNotEmpty) {
+                              _filterMarkeByQuery(value).then((result) {
+                                markaResult = result;
+                              });
+                            } else {
+                              markaResult = [];
+                            }
+                          });
+                        },
+                      ),
+              ),
+            ),
+
+            if (!isMarkaSelected && markaResult.isNotEmpty)
+              SingleChildScrollView(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 25, right: 25, bottom: 10),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(color: Colors.lightGreen, width: 1.5),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: SizedBox(
+                        height: 200,
+                        child: ListView.builder(
+                          itemCount: markaResult.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.lightGreen, width: 1.0),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: ListTile(
+                                title: Text(
+                                  markaResult[index],
+                                  style: GoogleFonts.archivo(fontSize: 16),
+                                ),
+                                onTap: () {
+                                  markaController.text = markaResult[index];
+                                  setState(() {
+                                    isMarkaSelected = true;
+                                  });
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
+            ////////////////////////////////////////////////////////////////////////////////
             Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 7.0, horizontal: 25.0),
@@ -455,7 +576,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const SplashIzlaz()));
         },
-        label: const Text('Kupi'),
+        label: const Text('Izlaz'),
         icon: const Icon(Icons.attach_money_rounded),
         backgroundColor: Colors.lightGreen,
       ),
@@ -521,5 +642,28 @@ class _IzlazRobeState extends State<IzlazRobe> {
         .toList();
 
     return filteredKupci;
+  }
+
+  Future<List<String>> _filterMarkeByQuery(String query) async {
+    // Fetch data from Firebase
+    final izlaz = await FirebaseFirestore.instance.collection('izlaz').get();
+
+    // Extract artikal values from the fetched data
+    final marke = izlaz.docs.map((doc) => doc['marka'] as String).toList();
+
+    // Group the artikli by their name and count the number of occurrences
+    final markeCounts = <String, int>{};
+    for (final marka in marke) {
+      markeCounts[marka] = (markeCounts[marke] ?? 0) + 1;
+    }
+
+    // Filter the data source based on the entered text, but only include
+    // one instance of each artikal name
+    final filteredMarke = markeCounts.keys
+        .where((artikal) =>
+            artikal.toLowerCase().contains(query.trim().toLowerCase()))
+        .toList();
+
+    return filteredMarke;
   }
 }
