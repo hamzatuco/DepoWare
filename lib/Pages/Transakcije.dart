@@ -180,7 +180,7 @@ class _TransakcijeState extends State<Transakcije> {
                                             0, 12, 0, 0),
                                         child: activeCollection == 'ulaz'
                                             ? Text(
-                                                'Nabavna cijena: ${data.containsKey('nabavnaCijena') ? data['nabavnaCijena'] : ''}',
+                                                'Nabavna cijena: ${data.containsKey('nabavnaCijena') ? data['nabavnaCijena'] : ''} KM',
                                                 style: GoogleFonts.archivo(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.w500,
@@ -188,7 +188,7 @@ class _TransakcijeState extends State<Transakcije> {
                                               )
                                             : activeCollection == 'izlaz'
                                                 ? Text(
-                                                    'Prodajna cijena: ${data.containsKey('cijena') ? data['cijena'] : ''}',
+                                                    'Prodajna cijena: ${data.containsKey('cijena') ? data['cijena'] : ''} KM',
                                                     style: GoogleFonts.archivo(
                                                       fontSize: 16,
                                                       fontWeight:

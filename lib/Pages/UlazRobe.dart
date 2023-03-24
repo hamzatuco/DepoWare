@@ -70,7 +70,7 @@ class _UlazRobeState extends State<UlazRobe> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.lightGreen,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -83,7 +83,7 @@ class _UlazRobeState extends State<UlazRobe> {
                     style: GoogleFonts.poppins(
                       fontSize: 35,
                       fontWeight: FontWeight.w800,
-                      color: Colors.red,
+                      color: Colors.lightGreen,
                     )),
               ),
             ),
@@ -106,13 +106,13 @@ class _UlazRobeState extends State<UlazRobe> {
                             decoration: InputDecoration(
                               hintText: nabavljacController.text,
                               prefixIcon: const Icon(Icons.person,
-                                  color: Colors.redAccent),
+                                  color: Colors.lightGreen),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
-                                  color: Colors.redAccent,
+                                  color: Colors.lightGreen,
                                   width: 3.0,
                                 ),
                                 borderRadius: BorderRadius.circular(15),
@@ -132,7 +132,7 @@ class _UlazRobeState extends State<UlazRobe> {
                               child: const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                                 child: Icon(Icons.edit_rounded,
-                                    color: Colors.redAccent),
+                                    color: Colors.lightGreen),
                               ),
                             ),
                           ),
@@ -147,7 +147,7 @@ class _UlazRobeState extends State<UlazRobe> {
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                              color: Colors.redAccent,
+                              color: Colors.lightGreen,
                               width: 3.0,
                             ),
                             borderRadius: BorderRadius.circular(15),
@@ -158,7 +158,7 @@ class _UlazRobeState extends State<UlazRobe> {
                           floatingLabelBehavior: FloatingLabelBehavior.auto,
                           prefixIcon: const Icon(
                             Icons.person,
-                            color: Colors.redAccent,
+                            color: Colors.lightGreen,
                           ),
                           hintText: 'Nabavljac',
                           hintStyle: GoogleFonts.archivo(
@@ -194,7 +194,8 @@ class _UlazRobeState extends State<UlazRobe> {
                         vertical: 7.0, horizontal: 25.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.redAccent, width: 1.5),
+                        border:
+                            Border.all(color: Colors.lightGreen, width: 1.5),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: SizedBox(
@@ -206,7 +207,7 @@ class _UlazRobeState extends State<UlazRobe> {
                               height: 50,
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: Colors.redAccent, width: 1.0),
+                                    color: Colors.lightGreen, width: 1.0),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: ListTile(
@@ -251,13 +252,13 @@ class _UlazRobeState extends State<UlazRobe> {
                             decoration: InputDecoration(
                               hintText: markaController.text,
                               prefixIcon: const Icon(Icons.attach_money,
-                                  color: Colors.redAccent),
+                                  color: Colors.lightGreen),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
-                                  color: Colors.redAccent,
+                                  color: Colors.lightGreen,
                                   width: 3.0,
                                 ),
                                 borderRadius: BorderRadius.circular(15),
@@ -277,7 +278,7 @@ class _UlazRobeState extends State<UlazRobe> {
                               child: const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                                 child: Icon(Icons.edit_rounded,
-                                    color: Colors.redAccent),
+                                    color: Colors.lightGreen),
                               ),
                             ),
                           ),
@@ -292,7 +293,7 @@ class _UlazRobeState extends State<UlazRobe> {
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                              color: Colors.redAccent,
+                              color: Colors.lightGreen,
                               width: 3.0,
                             ),
                             borderRadius: BorderRadius.circular(15),
@@ -303,7 +304,7 @@ class _UlazRobeState extends State<UlazRobe> {
                           floatingLabelBehavior: FloatingLabelBehavior.auto,
                           prefixIcon: const Icon(
                             Icons.shopping_bag_outlined,
-                            color: Colors.redAccent,
+                            color: Colors.lightGreen,
                           ),
                           hintText: 'Marka',
                           hintStyle: GoogleFonts.archivo(
@@ -337,7 +338,8 @@ class _UlazRobeState extends State<UlazRobe> {
                         vertical: 7.0, horizontal: 25.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.redAccent, width: 1.5),
+                        border:
+                            Border.all(color: Colors.lightGreen, width: 1.5),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: SizedBox(
@@ -349,7 +351,7 @@ class _UlazRobeState extends State<UlazRobe> {
                               height: 50,
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: Colors.redAccent, width: 1.0),
+                                    color: Colors.lightGreen, width: 1.0),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: ListTile(
@@ -397,13 +399,13 @@ class _UlazRobeState extends State<UlazRobe> {
                             decoration: InputDecoration(
                               hintText: artikalController.text,
                               prefixIcon: const Icon(Icons.search_rounded,
-                                  color: Colors.redAccent),
+                                  color: Colors.lightGreen),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
-                                  color: Colors.redAccent,
+                                  color: Colors.lightGreen,
                                   width: 3.0,
                                 ),
                                 borderRadius: BorderRadius.circular(15),
@@ -423,7 +425,7 @@ class _UlazRobeState extends State<UlazRobe> {
                               child: const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                                 child: Icon(Icons.edit_rounded,
-                                    color: Colors.redAccent),
+                                    color: Colors.lightGreen),
                               ),
                             ),
                           ),
@@ -438,7 +440,7 @@ class _UlazRobeState extends State<UlazRobe> {
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                              color: Colors.redAccent,
+                              color: Colors.lightGreen,
                               width: 3.0,
                             ),
                             borderRadius: BorderRadius.circular(15),
@@ -449,7 +451,7 @@ class _UlazRobeState extends State<UlazRobe> {
                           floatingLabelBehavior: FloatingLabelBehavior.auto,
                           prefixIcon: const Icon(
                             Icons.search_rounded,
-                            color: Colors.redAccent,
+                            color: Colors.lightGreen,
                           ),
                           hintText: 'Pretražite artikal',
                           hintStyle: GoogleFonts.archivo(
@@ -486,7 +488,8 @@ class _UlazRobeState extends State<UlazRobe> {
                         vertical: 7.0, horizontal: 25.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.redAccent, width: 1.5),
+                        border:
+                            Border.all(color: Colors.lightGreen, width: 1.5),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: SizedBox(
@@ -498,7 +501,7 @@ class _UlazRobeState extends State<UlazRobe> {
                               height: 50,
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: Colors.redAccent, width: 1.0),
+                                    color: Colors.lightGreen, width: 1.0),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: ListTile(
@@ -536,7 +539,7 @@ class _UlazRobeState extends State<UlazRobe> {
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                        const BorderSide(color: Colors.redAccent, width: 3.0),
+                        const BorderSide(color: Colors.lightGreen, width: 3.0),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   border: OutlineInputBorder(
@@ -545,7 +548,7 @@ class _UlazRobeState extends State<UlazRobe> {
                   floatingLabelBehavior: FloatingLabelBehavior.auto,
                   prefixIcon: const Icon(
                     Icons.attach_money_rounded,
-                    color: Colors.redAccent,
+                    color: Colors.lightGreen,
                   ),
                   hintText: 'Nabavna cijena',
                   hintStyle: GoogleFonts.archivo(
@@ -571,7 +574,7 @@ class _UlazRobeState extends State<UlazRobe> {
         },
         label: const Text('Unesi robu'),
         icon: const Icon(Icons.save_alt_rounded),
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.lightGreen,
       ),
     );
   }

@@ -72,7 +72,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: Colors.red,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -85,7 +85,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                     style: GoogleFonts.poppins(
                       fontSize: 35,
                       fontWeight: FontWeight.w800,
-                      color: Colors.lightGreen,
+                      color: Colors.red,
                     )),
               ),
             ),
@@ -106,14 +106,14 @@ class _IzlazRobeState extends State<IzlazRobe> {
                             enabled: false,
                             decoration: InputDecoration(
                               hintText: kupacController.text,
-                              prefixIcon: const Icon(Icons.person,
-                                  color: Colors.lightGreen),
+                              prefixIcon:
+                                  const Icon(Icons.person, color: Colors.red),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
-                                  color: Colors.lightGreen,
+                                  color: Colors.red,
                                   width: 3.0,
                                 ),
                                 borderRadius: BorderRadius.circular(15),
@@ -132,8 +132,8 @@ class _IzlazRobeState extends State<IzlazRobe> {
                               },
                               child: const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Icon(Icons.edit_rounded,
-                                    color: Colors.lightGreen),
+                                child:
+                                    Icon(Icons.edit_rounded, color: Colors.red),
                               ),
                             ),
                           ),
@@ -148,7 +148,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                              color: Colors.lightGreen,
+                              color: Colors.red,
                               width: 3.0,
                             ),
                             borderRadius: BorderRadius.circular(15),
@@ -159,7 +159,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                           floatingLabelBehavior: FloatingLabelBehavior.auto,
                           prefixIcon: const Icon(
                             Icons.person,
-                            color: Colors.lightGreen,
+                            color: Colors.red,
                           ),
                           hintText: 'Kupac',
                           hintStyle: GoogleFonts.archivo(
@@ -195,8 +195,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                         const EdgeInsets.only(left: 25, right: 25, bottom: 10),
                     child: Container(
                       decoration: BoxDecoration(
-                        border:
-                            Border.all(color: Colors.lightGreen, width: 1.5),
+                        border: Border.all(color: Colors.red, width: 1.5),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: SizedBox(
@@ -207,8 +206,8 @@ class _IzlazRobeState extends State<IzlazRobe> {
                             return Container(
                               height: 50,
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.lightGreen, width: 1.0),
+                                border:
+                                    Border.all(color: Colors.red, width: 1.0),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: ListTile(
@@ -239,7 +238,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                 child: Text('Odaberite artikal',
                     style: GoogleFonts.robotoSlab(
                       fontSize: 15,
-                      color: Colors.lightGreen,
+                      color: Colors.red,
                     )),
               ),
             ),
@@ -263,13 +262,13 @@ class _IzlazRobeState extends State<IzlazRobe> {
                             decoration: InputDecoration(
                               hintText: searchController.text,
                               prefixIcon: const Icon(Icons.search_rounded,
-                                  color: Colors.lightGreen),
+                                  color: Colors.red),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
-                                  color: Colors.lightGreen,
+                                  color: Colors.red,
                                   width: 3.0,
                                 ),
                                 borderRadius: BorderRadius.circular(15),
@@ -288,8 +287,8 @@ class _IzlazRobeState extends State<IzlazRobe> {
                               },
                               child: const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Icon(Icons.edit_rounded,
-                                    color: Colors.lightGreen),
+                                child:
+                                    Icon(Icons.edit_rounded, color: Colors.red),
                               ),
                             ),
                           ),
@@ -304,7 +303,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                              color: Colors.lightGreen,
+                              color: Colors.red,
                               width: 3.0,
                             ),
                             borderRadius: BorderRadius.circular(15),
@@ -315,7 +314,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                           floatingLabelBehavior: FloatingLabelBehavior.auto,
                           prefixIcon: const Icon(
                             Icons.search_rounded,
-                            color: Colors.lightGreen,
+                            color: Colors.red,
                           ),
                           hintText: 'Pretražite artikal',
                           hintStyle: GoogleFonts.archivo(
@@ -352,8 +351,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                         const EdgeInsets.only(left: 25, right: 25, bottom: 10),
                     child: Container(
                       decoration: BoxDecoration(
-                        border:
-                            Border.all(color: Colors.lightGreen, width: 1.5),
+                        border: Border.all(color: Colors.red, width: 1.5),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: SizedBox(
@@ -364,8 +362,8 @@ class _IzlazRobeState extends State<IzlazRobe> {
                             return Container(
                               height: 50,
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.lightGreen, width: 1.0),
+                                border:
+                                    Border.all(color: Colors.red, width: 1.0),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: ListTile(
@@ -408,13 +406,13 @@ class _IzlazRobeState extends State<IzlazRobe> {
                             decoration: InputDecoration(
                               hintText: markaController.text,
                               prefixIcon: const Icon(Icons.attach_money,
-                                  color: Colors.lightGreen),
+                                  color: Colors.red),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
-                                  color: Colors.lightGreen,
+                                  color: Colors.red,
                                   width: 3.0,
                                 ),
                                 borderRadius: BorderRadius.circular(15),
@@ -433,8 +431,8 @@ class _IzlazRobeState extends State<IzlazRobe> {
                               },
                               child: const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Icon(Icons.edit_rounded,
-                                    color: Colors.lightGreen),
+                                child:
+                                    Icon(Icons.edit_rounded, color: Colors.red),
                               ),
                             ),
                           ),
@@ -449,7 +447,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                              color: Colors.lightGreen,
+                              color: Colors.red,
                               width: 3.0,
                             ),
                             borderRadius: BorderRadius.circular(15),
@@ -460,7 +458,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                           floatingLabelBehavior: FloatingLabelBehavior.auto,
                           prefixIcon: const Icon(
                             Icons.shopping_bag_outlined,
-                            color: Colors.lightGreen,
+                            color: Colors.red,
                           ),
                           hintText: 'Marka',
                           hintStyle: GoogleFonts.archivo(
@@ -494,8 +492,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                         const EdgeInsets.only(left: 25, right: 25, bottom: 10),
                     child: Container(
                       decoration: BoxDecoration(
-                        border:
-                            Border.all(color: Colors.lightGreen, width: 1.5),
+                        border: Border.all(color: Colors.red, width: 1.5),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: SizedBox(
@@ -506,8 +503,8 @@ class _IzlazRobeState extends State<IzlazRobe> {
                             return Container(
                               height: 50,
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.lightGreen, width: 1.0),
+                                border:
+                                    Border.all(color: Colors.red, width: 1.0),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: ListTile(
@@ -542,8 +539,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                 ),
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Colors.lightGreen, width: 3.0),
+                    borderSide: const BorderSide(color: Colors.red, width: 3.0),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   border: OutlineInputBorder(
@@ -552,7 +548,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
                   floatingLabelBehavior: FloatingLabelBehavior.auto,
                   prefixIcon: const Icon(
                     Icons.attach_money_rounded,
-                    color: Colors.lightGreen,
+                    color: Colors.red,
                   ),
                   hintText: 'Unesite cijenu',
                   hintStyle: GoogleFonts.archivo(
@@ -578,7 +574,7 @@ class _IzlazRobeState extends State<IzlazRobe> {
         },
         label: const Text('Izlaz'),
         icon: const Icon(Icons.attach_money_rounded),
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: Colors.red,
       ),
     );
   }
