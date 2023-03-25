@@ -1,7 +1,8 @@
 // ignore_for_file: file_names, prefer_const_constructors
 //snackbar
 
-import 'SplashAdd.dart';
+import 'package:ht_prodaja/Pages/SplashUlaz.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -30,7 +31,7 @@ class _UlazRobeState extends State<UlazRobe> {
   bool isItemSelected = false;
   void searchFromFirebase(String query) async {
     final result = await FirebaseFirestore.instance
-        .collection('search')
+        .collection('ulaz')
         .where('string_id_array', arrayContains: query)
         .get();
 
@@ -570,7 +571,7 @@ class _UlazRobeState extends State<UlazRobe> {
             int.parse(nabavnacijenaController.text.trim()),
           );
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Splash()));
+              context, MaterialPageRoute(builder: (context) => SplashUlaz()));
         },
         label: const Text('Unesi robu'),
         icon: const Icon(Icons.save_alt_rounded),

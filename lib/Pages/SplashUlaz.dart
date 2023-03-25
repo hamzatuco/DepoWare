@@ -1,21 +1,18 @@
 // ignore_for_file: file_names, library_private_types_in_public_api, prefer_const_constructors
-
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-// ignore: depend_on_referenced_packages
 import 'package:ht_prodaja/Pages/HomePage.dart';
 
-class SplashIzlaz extends StatefulWidget {
-  const SplashIzlaz({Key? key}) : super(key: key);
+class SplashUlaz extends StatefulWidget {
+  const SplashUlaz({Key? key}) : super(key: key);
 
   @override
-  _SplashIzlazState createState() => _SplashIzlazState();
+  _SplashUlazState createState() => _SplashUlazState();
 }
 
-class _SplashIzlazState extends State<SplashIzlaz>
+class _SplashUlazState extends State<SplashUlaz>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {
@@ -38,7 +35,7 @@ class _SplashIzlazState extends State<SplashIzlaz>
               height: 250,
               width: 250,
               child: Lottie.network(
-                  'https://assets4.lottiefiles.com/packages/lf20_m1Cwki.json',
+                  'https://assets8.lottiefiles.com/packages/lf20_wc1axoqt.json',
                   repeat: false)),
           SizedBox(
             height: 50,
@@ -47,7 +44,7 @@ class _SplashIzlazState extends State<SplashIzlaz>
               style: GoogleFonts.bebasNeue(
                   fontSize: 45,
                   fontWeight: FontWeight.bold,
-                  color: Colors.red)),
+                  color: Colors.green)),
         ],
       ),
     ));

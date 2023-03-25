@@ -1,11 +1,11 @@
 //login
-// ignore_for_file: file_names
+// ignore_for_file: file_names, depend_on_referenced_packages
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:prodajaodjece/Pages/SplashIzlaz.dart';
+import 'package:ht_prodaja/Pages/SplashIzlaz.dart';
 
 import '../firebase_options.dart';
 
