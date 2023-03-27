@@ -52,7 +52,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '351769256856',
     projectId: 'prodajaodjece-2102b',
     authDomain: 'prodajaodjece-2102b.firebaseapp.com',
-    databaseURL: 'https://prodajaodjece-2102b-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://prodajaodjece-2102b-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'prodajaodjece-2102b.appspot.com',
   );
 
@@ -61,7 +62,8 @@ class DefaultFirebaseOptions {
     appId: '1:351769256856:android:ec5724e6d15f0bd1ef81ed',
     messagingSenderId: '351769256856',
     projectId: 'prodajaodjece-2102b',
-    databaseURL: 'https://prodajaodjece-2102b-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://prodajaodjece-2102b-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'prodajaodjece-2102b.appspot.com',
   );
 
@@ -70,9 +72,11 @@ class DefaultFirebaseOptions {
     appId: '1:351769256856:ios:e466c8d140bfeebaef81ed',
     messagingSenderId: '351769256856',
     projectId: 'prodajaodjece-2102b',
-    databaseURL: 'https://prodajaodjece-2102b-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://prodajaodjece-2102b-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'prodajaodjece-2102b.appspot.com',
-    iosClientId: '351769256856-st0k5i5jsr4jpan219mfboj4vbndkspm.apps.googleusercontent.com',
+    iosClientId:
+        '351769256856-st0k5i5jsr4jpan219mfboj4vbndkspm.apps.googleusercontent.com',
     iosBundleId: 'com.example.prodajaodjece',
   );
 }
