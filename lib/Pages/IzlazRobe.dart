@@ -234,10 +234,11 @@ class _IzlazRobeState extends State<IzlazRobe> {
             Align(
               alignment: Alignment.topLeft,
               child: Padding(
-                padding: const EdgeInsets.all(25.0),
+                padding: const EdgeInsets.fromLTRB(25, 20, 0, 15),
                 child: Text('Odaberite artikal',
-                    style: GoogleFonts.robotoSlab(
-                      fontSize: 15,
+                    style: GoogleFonts.poppins(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
                       color: Colors.red,
                     )),
               ),

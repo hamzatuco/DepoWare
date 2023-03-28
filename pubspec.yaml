@@ -41,7 +41,6 @@ dependencies:
   english_words: ^4.0.0
   dropdown_button2: ^1.9.2
   firebase_core:
-  firebase_core_web:
   cloud_firestore: ^4.3.1
   lottie: ^2.1.0
   awesome_snackbar_content:
@@ -65,8 +64,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-  assets:
-    - background.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

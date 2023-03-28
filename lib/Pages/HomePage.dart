@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, unnecessary_string_interpolations, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.orangeAccent.withOpacity(0.1),
               border: Border.all(
                 color: Colors.black,
-                width: 1.0,
+                width: 0.5,
               ),
             ),
           ),
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(25, 20, 25, 0),
+                      padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
                       child: SizedBox(
                           height: 250,
                           width: 250,
@@ -153,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 40, 20, 0),
+                      padding: const EdgeInsets.fromLTRB(0, 70, 20, 0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -183,9 +183,9 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                   Center(
+                    Center(
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 30),
                         child: SizedBox(
                           height: 40,
                           width: 110,
@@ -220,7 +220,6 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ),

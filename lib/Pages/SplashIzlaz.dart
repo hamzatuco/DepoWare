@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:ht_prodaja/Pages/HomePage.dart';
 import 'package:lottie/lottie.dart';
 // ignore: depend_on_referenced_packages
-import 'HomePage.dart';
 
 class SplashIzlaz extends StatefulWidget {
   const SplashIzlaz({Key? key}) : super(key: key);
