@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, unused_import
+// ignore_for_file: file_names, unused_import, use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ht_prodaja/Pages/ForgotPassword.dart';
@@ -44,7 +44,7 @@ class _RegisterState extends State<Register> {
                 padding: const EdgeInsets.fromLTRB(25, 35, 0, 0),
                 child: Text('Registrujte se',
                     style: GoogleFonts.poppins(
-                        fontSize: 24, fontWeight: FontWeight.w600)),
+                        fontSize: 24, fontWeight: FontWeight.bold)),
               ),
             ),
             Padding(
@@ -311,6 +311,16 @@ class _RegisterState extends State<Register> {
         email: email,
         password: password,
       );
+
+      // Request email verification
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null && !user.emailVerified) {
+        await user.sendEmailVerification();
+        Fluttertoast.showToast(
+            msg:
+                'Email sent to ${user.email}. Please verify your email address.');
+      }
+
       _emailController.clear();
       _passwordController.clear();
       _passwordConfirmController.clear();

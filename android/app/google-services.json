@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "351769256856",
+    "firebase_url": "https://prodajaodjece-2102b-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "prodajaodjece-2102b",
+    "storage_bucket": "prodajaodjece-2102b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351769256856:android:ec5724e6d15f0bd1ef81ed",
+        "android_client_info": {
+          "package_name": "com.example.prodajaodjece"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351769256856-iruq6denjqga2uejdkikls2f0kb158vc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.prodajaodjece",
+            "certificate_hash": "7fa30f9c21ad743a4396bc1b59c7c28252f53ec3"
+          }
+        },
+        {
+          "client_id": "351769256856-rv44t31lu203g4jnfk59ge1nfcl3riqc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAstB7zDd-39h28ZUGprOpc9AmLbUdPUk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351769256856-hlifpk3084fop862fnlaudbac6lim4lq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "351769256856-b38ogmh5jklia0eaoqc47vg7s689gbjp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
