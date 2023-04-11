@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:ht_prodaja/Pages/LoginScreen.dart';
+import 'package:depoware/Pages/LoginScreen.dart';
 
 void main() async => runApp(const MyApp());
 

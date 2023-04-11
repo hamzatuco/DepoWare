@@ -1,7 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors
 //snackbar
 
-import 'package:ht_prodaja/Pages/SplashUlaz.dart';
+import 'package:depoware/Pages/SplashUlaz.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

@@ -1,10 +1,10 @@
-// ignore_for_file: file_names, unused_import
+// ignore_for_file: file_names, unused_import, use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ht_prodaja/Pages/ForgotPassword.dart';
-import 'package:ht_prodaja/Pages/HomePage.dart';
-import 'package:ht_prodaja/Pages/LoginScreen.dart';
-import 'package:ht_prodaja/Pages/RegisterScreen.dart';
+import 'package:depoware/Pages/ForgotPassword.dart';
+import 'package:depoware/Pages/HomePage.dart';
+import 'package:depoware/Pages/LoginScreen.dart';
+import 'package:depoware/Pages/RegisterScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lottie/lottie.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -12,7 +12,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../widgets.dart';
 import '../colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ht_prodaja/firebase_options.dart';
+import 'package:depoware/firebase_options.dart';
 
 void main() async {
   runApp(const ForgotPassword());
@@ -114,7 +114,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         fontStyle: FontStyle.normal,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      resetPassword();
+                    },
                     child: Text(
                       'Pošalji e-mail',
                       textAlign: TextAlign.center,
@@ -157,14 +159,26 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   }
 
   Future<void> resetPassword() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     final user = FirebaseAuth.instance.currentUser;
     if (user != null && user.emailVerified) {
-      await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: _emailController.text.trim());
-      Fluttertoast.showToast(msg: 'Email with reset password link sent.');
+      try {
+        await FirebaseAuth.instance
+            .sendPasswordResetEmail(email: _emailController.text.trim());
+        Fluttertoast.showToast(msg: 'Link za reset lozinke je poslat.');
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (BuildContext context) => const Login()),
+          (route) => false,
+        );
+      } catch (e) {
+        Fluttertoast.showToast(msg: 'Greška prilikom slanja linka.');
+      }
     } else {
-      Fluttertoast.showToast(
-          msg: 'Please verify your email before resetting your password.');
+      Fluttertoast.showToast(msg: 'Molimo potvrdite email adresu!.');
     }
   }
 }

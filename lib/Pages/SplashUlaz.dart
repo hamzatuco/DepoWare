@@ -2,7 +2,7 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:ht_prodaja/Pages/HomePage.dart';
+import 'package:depoware/Pages/HomePage.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashUlaz extends StatefulWidget {

@@ -1,9 +1,9 @@
-// ignore_for_file: file_names, unused_import
+// ignore_for_file: file_names, unused_import, avoid_print, use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ht_prodaja/Pages/ForgotPassword.dart';
-import 'package:ht_prodaja/Pages/HomePage.dart';
-import 'package:ht_prodaja/Pages/RegisterScreen.dart';
+import 'package:depoware/Pages/ForgotPassword.dart';
+import 'package:depoware/Pages/HomePage.dart';
+import 'package:depoware/Pages/RegisterScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lottie/lottie.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -11,7 +11,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../widgets.dart';
 import '../colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ht_prodaja/firebase_options.dart';
+import 'package:depoware/firebase_options.dart';
 
 void main() async {
   runApp(const Login());
@@ -315,10 +315,16 @@ class _LoginState extends State<Login> {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+    print('Button pressed!');
     try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
       _emailController.clear();
       _passwordController.clear();
-      // ignore: use_build_context_synchronously
+      print('User logged in: ${userCredential.user!.uid}');
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (BuildContext context) => const HomePage()),
@@ -332,6 +338,8 @@ class _LoginState extends State<Login> {
       } else {
         Fluttertoast.showToast(msg: 'Greška prilikom prijave');
       }
+    } catch (e) {
+      print(e);
     }
   }
 }

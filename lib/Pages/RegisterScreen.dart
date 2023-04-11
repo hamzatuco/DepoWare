@@ -1,10 +1,10 @@
 // ignore_for_file: file_names, unused_import, use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ht_prodaja/Pages/ForgotPassword.dart';
-import 'package:ht_prodaja/Pages/HomePage.dart';
-import 'package:ht_prodaja/Pages/LoginScreen.dart';
-import 'package:ht_prodaja/Pages/RegisterScreen.dart';
+import 'package:depoware/Pages/ForgotPassword.dart';
+import 'package:depoware/Pages/HomePage.dart';
+import 'package:depoware/Pages/LoginScreen.dart';
+import 'package:depoware/Pages/RegisterScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lottie/lottie.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -12,7 +12,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../widgets.dart';
 import '../colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ht_prodaja/firebase_options.dart';
+import 'package:depoware/firebase_options.dart';
 
 void main() async {
   runApp(const Register());
@@ -317,8 +317,9 @@ class _RegisterState extends State<Register> {
       if (user != null && !user.emailVerified) {
         await user.sendEmailVerification();
         Fluttertoast.showToast(
-            msg:
-                'Email sent to ${user.email}. Please verify your email address.');
+            toastLength: Toast.LENGTH_LONG,
+            timeInSecForIosWeb: 3,
+            msg: 'Email poslat na ${user.email}. Molimo potvrdite email!.');
       }
 
       _emailController.clear();
