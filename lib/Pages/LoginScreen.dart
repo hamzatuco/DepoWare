@@ -1,4 +1,5 @@
 // ignore_for_file: file_names, unused_import, avoid_print, use_build_context_synchronously
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:depoware/Pages/ForgotPassword.dart';
@@ -12,6 +13,7 @@ import '../widgets.dart';
 import '../colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:depoware/firebase_options.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 void main() async {
   runApp(const Login());
@@ -297,10 +299,24 @@ class _LoginState extends State<Login> {
                     Fluttertoast.showToast(msg: 'I am facebook');
                   }),
                   CustomWidgets.socialButtonRect(
-                      'Google', googleColor, FontAwesomeIcons.google,
-                      onTap: () {
-                    Fluttertoast.showToast(msg: 'I am google');
-                  }),
+                    'Google',
+                    googleColor,
+                    FontAwesomeIcons.google,
+                    onTap: () async {
+                      User? user = await handleGoogleSignIn();
+                      if (user != null) {
+                        // Navigate to HomeScreen after successful sign-in
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomePage()),
+                        );
+                      } else {
+                        // Handle sign-in error
+                        print('Sign-In Error: Failed to sign in with Google');
+                      }
+                    },
+                  ),
                 ],
               ),
             ),
@@ -340,6 +356,49 @@ class _LoginState extends State<Login> {
       }
     } catch (e) {
       print(e);
+    }
+  }
+
+  Future<User?> handleGoogleSignIn() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+
+    try {
+      if (kIsWeb) {
+        // Web-based Google Sign-In
+        GoogleAuthProvider authProvider = GoogleAuthProvider();
+        final UserCredential userCredential =
+            await FirebaseAuth.instance.signInWithPopup(authProvider);
+        return userCredential.user;
+      } else {
+        // Mobile-based Google Sign-In
+        final GoogleSignIn googleSignIn = GoogleSignIn(
+          clientId:
+              "351769256856-iruq6denjqga2uejdkikls2f0kb158vc.apps.googleusercontent.com", // Replace with your actual OAuth client ID for Android
+        );
+        final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+        if (googleUser != null) {
+          final GoogleSignInAuthentication googleAuth =
+              await googleUser.authentication;
+          final OAuthCredential credential = GoogleAuthProvider.credential(
+            accessToken: googleAuth.accessToken,
+            idToken: googleAuth.idToken,
+          );
+          final UserCredential userCredential =
+              await FirebaseAuth.instance.signInWithCredential(credential);
+          return userCredential.user;
+        } else {
+          print('Google Sign-In Error: No user found');
+          // Handle no user found error
+          return null;
+        }
+      }
+    } catch (error) {
+      print('Google Sign-In Error: $error');
+      // Handle sign-in error
+      return null;
     }
   }
 }

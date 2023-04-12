@@ -21,6 +21,7 @@ dependencies:
   firebase_auth:
   font_awesome_flutter:
   fluttertoast: ^8.2.1
+  google_sign_in:
 
 dev_dependencies:
   flutter_test:
