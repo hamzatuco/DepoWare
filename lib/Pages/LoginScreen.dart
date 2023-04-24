@@ -331,7 +331,6 @@ class _LoginState extends State<Login> {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    print('Button pressed!');
     try {
       UserCredential userCredential =
           await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -340,7 +339,6 @@ class _LoginState extends State<Login> {
       );
       _emailController.clear();
       _passwordController.clear();
-      print('User logged in: ${userCredential.user!.uid}');
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (BuildContext context) => const HomePage()),
